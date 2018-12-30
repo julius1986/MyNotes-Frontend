@@ -1,10 +1,15 @@
 <template>
 <div id="menu">
-  <ul>
-    <li @click="addNewNote()">Add tandom note</li>
-    <li>Show tandom note</li>
-    <li>Delete tandom note</li>
-  </ul>
+  <div class="logout">
+    logout
+  </div>
+  <div class="user">
+    User1
+  </div>
+    <div class="add-btn" @click="addNewNote()">
+      Add tandom note
+    </div>
+
 </div>
 </template>
 <script>
@@ -22,15 +27,29 @@ export default {
 </script>
 <style scoped>
 #menu {
-  height: 20%;
+  top: 0;
+  height: 10%;
   width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: orange;
+  z-index: 2;
 }
-#menu ul {
-
-  text-decoration: none;
-}
-#menu ul li{
+#menu div {
   display: inline-block;
+}
+#menu .logout, .add-btn {
+  flex:1 ;
+}
+
+#menu .user {
+  flex: 4;
+}
+
+#menu ul li{
+
   margin:10px;
   padding: 4px;
   border-left: black 1px solid;

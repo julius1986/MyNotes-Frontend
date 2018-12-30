@@ -5,11 +5,19 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    notes: []
+    notes: [],
+    isDisable: false,
+    isConfirm: false
   },
   getters: {
     notes: (state) => {
       return state.notes
+    },
+    isConfirm: (state) => {
+      return state.isConfirm
+    },
+    isDisable: (state)=>{
+      return state.isDisable
     }
   },
   mutations: {
@@ -21,6 +29,9 @@ const store = new Vuex.Store({
     },
     deleteNote: (state, note) => {
       state.notes.splice(state.notes.indexOf(note), 1);
+    },
+    changeState: (state, ctx)=>{
+      state[ctx.type] = ctx.value;
     }
 
   },
@@ -32,7 +43,25 @@ const store = new Vuex.Store({
         },
         {
           id: 2,
-          text: "Lorem ipsum dolor sit amet, consectetur."
+          text: `
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          Lorem ipsum dolor sit amet, consectetur.
+          `
         },
         {
           id: 3,

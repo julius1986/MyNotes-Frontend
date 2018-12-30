@@ -1,16 +1,21 @@
 <template>
   <div id="app">
     <Menu @add-new-note="addNewNote()"></Menu>
-    <list-notes :notes="notes" @delete-note="deleteNote($event)"></list-notes>
+    <list-notes :notes="notes" @delete-note="deleteNote($event)" @editMode = "turnOnEditMod()"></list-notes>
+    <edit-note v-if="isDisable"></edit-note>
+    <dialog-window v-if="isConfirm"></dialog-window>
   </div>
 </template>
 
 <script>
 import ListNotes from './components/ListNotes.vue'
 import Menu from './components/menu.vue';
+import EditNote from "./components/edit-window";
+import DialogWindow from "./components/dialog-window";
 import store from './store.js';
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
+
 
 export default {
   name: 'app',
@@ -21,11 +26,15 @@ export default {
   store,
   components: {
     ListNotes,
-    Menu
+    Menu,
+    EditNote,
+    DialogWindow
   },
   computed:{
     ...mapGetters([
-      'notes'
+      'notes',
+      'isConfirm',
+      'isDisable'
     ])
   },
   methods: {
