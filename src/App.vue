@@ -11,14 +11,16 @@ import Menu from './components/menu.vue';
 import store from './store.js';
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
+import mansory from "./masonry";
 
 export default {
   name: 'app',
+
+  store,
   async created() {
      let result = await this.getAllNotes();
      store.commit('setNotes', result);
   },
-  store,
   components: {
     ListNotes,
     Menu
@@ -35,17 +37,21 @@ export default {
       'deleteNote'
 
     ]),
+  },
+  mounted() {
+    //do something after mounting vue instance
+    mansory.initMasonry();
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
 }
 </style>

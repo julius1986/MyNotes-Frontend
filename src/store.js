@@ -38,6 +38,10 @@ const store = new Vuex.Store({
           id: 3,
           text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus aspernatur odit maxime corporis temporibus quis nisi dolore placeat, id sunt quam unde necessitatibus tempora, obcaecati voluptatum excepturi, qui nobis!"
         },
+        {
+          id: 4,
+          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus aspernatur odit maxime corporis temporibus quis nisi dolore placeat, id sunt quam unde necessitatibus tempora, obcaecati voluptatum excepturi, qui nobis!"
+        },
       ]
     },
     addNewNote: (ctx) => {

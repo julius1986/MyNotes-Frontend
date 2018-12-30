@@ -1,8 +1,8 @@
 <template>
-<div id="ListNotes">
-  <transition-group name="fade">
+<div id="ListNotes" class="grid">
+
   <note v-for="note in notes" :key="note.id" :note="note" @delete-note="deleteNote($event)"></note>
-</transition-group>
+
 </div>
 </template>
 <script>

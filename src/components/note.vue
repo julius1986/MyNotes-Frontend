@@ -1,5 +1,5 @@
 <template>
-<div id="note">
+<div id="note" class="grid-item">
   <div class="text">{{note.text}}</div>
   <div class="deleteBtn" @click="deleteNote()">Delete</div>
 </div>
@@ -20,18 +20,19 @@ export default {
 </script>
 <style scoped>
 #note {
-  display: inline-block;
-  padding: 10px;
+  /* display: inline-block;
+  padding: 10px;*/
+  margin-bottom: 10px;
   width: 300px;
-  height: 300px;
+  /* height: 300px; */
   background: yellow;
   border: 1px solid black;
-  overflow: auto;
+   overflow: auto;
 }
 .text{
   height: 80%;
 }
-deleteBtn{
+.deleteBtn{
   height: 20%;
 }
 </style>
