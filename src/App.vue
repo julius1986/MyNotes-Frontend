@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <Menu @add-new-note="addNewNote()"></Menu>
-    <list-notes :notes="notes"  @editMode = "turnOnEditMod()"></list-notes>
-    <disable-window v-if="isDisable"></disable-window>
-    <dialog-window v-if="isConfirm" @delete-note="deleteNote($event)"></dialog-window>
-    <edit-window v-if="isEdit" @update-note="updateNote()"></edit-window>
+    <list-notes :notes="notes" @set-update-note="setUpdateNote($event)" @set-delete-note="setDeleteNote($event)"></list-notes>
+    <disable-window v-if="isDisable" ></disable-window>
+    <dialog-window v-if="isConfirm"  @delete-note="deleteNote($event)" :note="currentDeleteNote"></dialog-window>
+    <edit-window v-if="isEdit" :note="currentEditNote"  @update-note="updateNote($event)"></edit-window>
+    <show-note-window v-if="isShowNote"></show-note-window>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import ListNotes from './components/ListNotes.vue'
 import Menu from './components/menu.vue';
 import DisableWindow from "./components/disable-window";
+import ShowNoteWindow from "./components/show-note-window";
 import EditWindow from "./components/edit-window";
 import DialogWindow from "./components/dialog-window";
 import store from './store.js';
@@ -25,12 +27,19 @@ export default {
      let result = await this.getAllNotes();
      store.commit('setNotes', result);
   },
+  data(){
+    return{
+      currentEditNote: {},
+      currentDeleteNote: {}
+    }
+  },
   store,
   components: {
     ListNotes,
     Menu,
     DisableWindow,
     DialogWindow,
+    ShowNoteWindow,
     EditWindow
   },
   computed:{
@@ -38,6 +47,7 @@ export default {
       'notes',
       'isConfirm',
       'isDisable',
+      'isShowNote',
       'isEdit'
     ])
   },
@@ -47,8 +57,13 @@ export default {
       'addNewNote',
       'deleteNote',
       'updateNote'
-
     ]),
+    setUpdateNote(note){
+      this.currentEditNote = note;
+    },
+    setDeleteNote(note){
+      this.currentDeleteNote = note;
+    },
   }
 }
 </script>

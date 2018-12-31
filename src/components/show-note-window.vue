@@ -1,15 +1,10 @@
 <template>
-  <div id="edit-window">
-    <div class="dialog-box">
+  <div id="container-show-window">
+    <div class="note-box">
       <div class="text-container">
-        <textarea class="text-input" v-model="newNote.text"></textarea>
+        <div class="text-input">{{noteText}}</div>
       </div>
       <div class="button-group">
-        <div class="btn" @click="updateNote()">
-          <div class="btn-text">
-          UPDATE
-          </div>
-        </div>
         <div class="btn" @click="cancelUpdating()">
           <div class="btn-text">
           CANCEL
@@ -23,27 +18,25 @@
 export default {
   name: "",
   created() {
-    this.newNote.id = this.note.id;
-    this.newNote.text = this.note.text;
+  //do something after creating vue instance
+  this.noteText = this.$store.state.showNoteText
+},
+  data(){
+    return{
+    noteText:""
+    }
   },
-  props: ['note'],
-  data: () => ({
-    newNote:{}
-  }),
   methods: {
-    updateNote() {
-      this.$emit('update-note', this.newNote);
-    },
     cancelUpdating() {
       this.$store.commit('changeState',{type:'isDisable', value: false});
-      this.$store.commit('changeState',{type:'isEdit', value: false});
+      this.$store.commit('changeState',{type:'isShowNote', value: false});
     }
   }
 }
 </script>
 
 <style scoped>
-#edit-window {
+#container-show-window {
   position: fixed;
   z-index: 5;
   top: 0;
@@ -55,7 +48,7 @@ export default {
   align-items: center;
 }
 
-.dialog-box {
+.note-box {
   background-color: white;
   width: 300px;
   height: 300px;
@@ -91,20 +84,18 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
 }
 
 .text-input{
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   border:0px;
   resize: none;
   font-size: 18px;
+  height: 100%;
 }
 
-.text-input:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
 
-}
 
 </style>

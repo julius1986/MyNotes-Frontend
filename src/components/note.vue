@@ -5,12 +5,10 @@
     <div class="btn edit" @click="openEdit()">
       <div class="btnText">Edit</div>
     </div>
-    <div class="btn delete" @click="deleteNote()">
+    <div class="btn delete" @click="setDeleteNote()">
       <div class="btnText">Delete</div>
     </div>
-
   </div>
-
 </div>
 </template>
 <script>
@@ -22,16 +20,21 @@ export default {
 
   }),
   methods: {
-    deleteNote() {
+    setDeleteNote() {
+      this.$emit('set-delete-note', this.note);
       this.$store.commit('changeState',{type:'isDisable', value: true})
       this.$store.commit('changeState', {type:'isConfirm', value: true})
+
     },
     openEdit(){
       this.$store.commit('changeState',{type:'isDisable', value: true})
       this.$store.commit('changeState',{type:'isEdit', value: true})
+      this.$emit('set-update-note', this.note);
     },
     showFullNote(){
       this.$store.commit('changeState',{type:'isDisable', value: true})
+      this.$store.commit('changeState',{type:'isShowNote', value: true})
+      this.$store.commit('changeState', {type:'showNoteText', value: this.note.text})
     }
   },
 }
@@ -40,7 +43,7 @@ export default {
 #note {
   flex: 0;
   min-width: 300px;
-  min-height: 300px;
+  height: 300px;
   background: white;
   border: 1px solid black;
   margin: 6px 10px;

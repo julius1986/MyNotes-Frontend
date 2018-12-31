@@ -25,11 +25,13 @@
 
 export default {
   name: "",
+  props:['note'],
   data: () => ({
 
   }),
   methods: {
     deleteNote() {
+      console.log(this.note);
       this.$emit('delete-note', this.note);
     },
     cancelDeleting() {

@@ -8,7 +8,10 @@ const store = new Vuex.Store({
     notes: [],
     isDisable: false,
     isEdit: false,
-    isConfirm: false
+    isShowNote: false,
+    isConfirm: false,
+
+    showNoteText:""
   },
   getters: {
     notes: (state) => {
@@ -20,7 +23,10 @@ const store = new Vuex.Store({
     isEdit: (state) => {
       return state.isEdit
     },
-    isDisable: (state)=>{
+    isShowNote: (state) => {
+      return state.isShowNote
+    },
+    isDisable: (state) => {
       return state.isDisable
     }
   },
@@ -34,8 +40,18 @@ const store = new Vuex.Store({
     deleteNote: (state, note) => {
       state.notes.splice(state.notes.indexOf(note), 1);
     },
-    changeState: (state, ctx)=>{
+    changeState: (state, ctx) => {
       state[ctx.type] = ctx.value;
+    },
+    updateNote: (state, note) => {
+      for (var i = 0; i < state.notes.length; i++) {
+        if (state.notes[i].id === note.id) {
+          for (let key in state.notes[i]) {
+            state.notes[i][key] = note[key]
+          }
+          return;
+        }
+      }
     }
 
   },
@@ -84,11 +100,27 @@ const store = new Vuex.Store({
     },
     deleteNote: (ctx, note) => {
       ctx.commit('deleteNote', note)
-      ctx.commit('changeState',{type:'isDisable', value: false});
-      ctx.commit('changeState',{type:'isConfirm', value: false});
+      ctx.commit('changeState', {
+        type: 'isDisable',
+        value: false
+      });
+      ctx.commit('changeState', {
+        type: 'isConfirm',
+        value: false
+      });
+      //тут нужно сделать удаление
     },
-    updateNote: (ctx, note)=>{
-      
+    updateNote: (ctx, note) => {
+      ctx.commit('changeState', {
+        type: 'isDisable',
+        value: false
+      });
+      ctx.commit('changeState', {
+        type: 'isEdit',
+        value: false
+      });
+      ctx.commit('updateNote', note);
+      //тут нужно сделать обновление
     }
   }
 })

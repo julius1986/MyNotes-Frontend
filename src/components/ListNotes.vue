@@ -1,6 +1,6 @@
 <template>
 <div id="ListNotes">
-  <note v-for="note in notes" :key="note.id" :note="note" @delete-note="deleteNote($event)"></note>
+  <note v-for="note in notes" :key="note.id" :note="note" @set-delete-note="setDeleteNote($event)" @set-update-note="setUpdateNote($event)"></note>
 </div>
 </template>
 <script>
@@ -16,8 +16,11 @@ export default {
     note
   },
   methods: {
-    deleteNote(value) {
-      this.$emit('delete-note', value);
+    setUpdateNote(value) {
+      this.$emit('set-update-note', value);
+    },
+    setDeleteNote(value) {
+      this.$emit('set-delete-note', value);
     },
   }
 }

@@ -18,7 +18,7 @@ export default {
   height: 100vh;
   opacity: .2;
   background-color: black;
-  z-index: 3;
+  z-index: 2;
   top: 0;
   left: 0;
 }
