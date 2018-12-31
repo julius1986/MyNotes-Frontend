@@ -23,12 +23,12 @@ export default {
   }),
   methods: {
     deleteNote() {
-      //this.$emit('delete-note', this.note);
       this.$store.commit('changeState',{type:'isDisable', value: true})
       this.$store.commit('changeState', {type:'isConfirm', value: true})
     },
     openEdit(){
       this.$store.commit('changeState',{type:'isDisable', value: true})
+      this.$store.commit('changeState',{type:'isEdit', value: true})
     },
     showFullNote(){
       this.$store.commit('changeState',{type:'isDisable', value: true})

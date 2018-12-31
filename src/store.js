@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     notes: [],
     isDisable: false,
+    isEdit: false,
     isConfirm: false
   },
   getters: {
@@ -15,6 +16,9 @@ const store = new Vuex.Store({
     },
     isConfirm: (state) => {
       return state.isConfirm
+    },
+    isEdit: (state) => {
+      return state.isEdit
     },
     isDisable: (state)=>{
       return state.isDisable
@@ -80,6 +84,11 @@ const store = new Vuex.Store({
     },
     deleteNote: (ctx, note) => {
       ctx.commit('deleteNote', note)
+      ctx.commit('changeState',{type:'isDisable', value: false});
+      ctx.commit('changeState',{type:'isConfirm', value: false});
+    },
+    updateNote: (ctx, note)=>{
+      
     }
   }
 })
