@@ -20,7 +20,8 @@ export default {
   }),
   methods: {
     addNewNote() {
-      this.$emit('add-new-note');
+      this.$store.commit('changeState',{type:'isDisable', value: true});
+      this.$store.commit('changeState',{type:'isAdd', value: true});
     }
   }
 }

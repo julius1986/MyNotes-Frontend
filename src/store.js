@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     isEdit: false,
     isShowNote: false,
     isConfirm: false,
+    isAdd: false,
 
     showNoteText:""
   },
@@ -25,6 +26,9 @@ const store = new Vuex.Store({
     },
     isShowNote: (state) => {
       return state.isShowNote
+    },
+    isAdd: (state) => {
+      return state.isAdd
     },
     isDisable: (state) => {
       return state.isDisable
@@ -89,14 +93,26 @@ const store = new Vuex.Store({
         },
       ]
     },
-    addNewNote: (ctx) => {
-      let someText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo laborum deserunt eaque, aperiam veniam nisi.";
+    addNewNote: (ctx, newNote) => {
+      let someText = newNote.text;
       let id = ctx.state.notes.length + 1;
+
+      //тут нужно сделать добавление
 
       ctx.commit('addNewNote', {
         id: id,
         text: someText
       });
+
+      ctx.commit('changeState', {
+        type: 'isDisable',
+        value: false
+      });
+      ctx.commit('changeState', {
+        type: 'isAdd',
+        value: false
+      });
+
     },
     deleteNote: (ctx, note) => {
       ctx.commit('deleteNote', note)

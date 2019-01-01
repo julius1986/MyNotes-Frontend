@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <Menu @add-new-note="addNewNote()"></Menu>
+    <Menu></Menu>
     <list-notes :notes="notes" @set-update-note="setUpdateNote($event)" @set-delete-note="setDeleteNote($event)"></list-notes>
     <disable-window v-if="isDisable" ></disable-window>
     <dialog-window v-if="isConfirm"  @delete-note="deleteNote($event)" :note="currentDeleteNote"></dialog-window>
     <edit-window v-if="isEdit" :note="currentEditNote"  @update-note="updateNote($event)"></edit-window>
     <show-note-window v-if="isShowNote"></show-note-window>
+    <add-note-window v-if="isAdd" @add-new-note="addNewNote($event)"></add-note-window>
   </div>
 </template>
 
@@ -14,18 +15,18 @@ import ListNotes from './components/ListNotes.vue'
 import Menu from './components/menu.vue';
 import DisableWindow from "./components/disable-window";
 import ShowNoteWindow from "./components/show-note-window";
+import AddNoteWindow from "./components/add-note-window";
 import EditWindow from "./components/edit-window";
 import DialogWindow from "./components/dialog-window";
 import store from './store.js';
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 
-
 export default {
   name: 'app',
   async created() {
-     let result = await this.getAllNotes();
-     store.commit('setNotes', result);
+     let allNotes = await this.getAllNotes();
+     store.commit('setNotes', allNotes);
   },
   data(){
     return{
@@ -40,6 +41,7 @@ export default {
     DisableWindow,
     DialogWindow,
     ShowNoteWindow,
+    AddNoteWindow,
     EditWindow
   },
   computed:{
@@ -48,6 +50,7 @@ export default {
       'isConfirm',
       'isDisable',
       'isShowNote',
+      'isAdd',
       'isEdit'
     ])
   },
