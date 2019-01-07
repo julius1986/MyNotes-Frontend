@@ -1,39 +1,52 @@
 <template>
-  <div id="add-window">
-    <div class="dialog-box">
-      <div class="text-container">
-        <textarea class="text-input" v-model="newNote.text"></textarea>
-      </div>
-      <div class="button-group">
-        <div class="btn" @click="addNote()">
-          <div class="btn-text">
+<div id="add-window">
+  <div class="dialog-box">
+    <div class="text-container">
+      <textarea class="text-input" v-model="newNote.text"></textarea>
+    </div>
+    <div class="button-group">
+      <div class="btn" @click="addNote()">
+        <div class="btn-text">
           ADD NEW NOTE
-          </div>
         </div>
-        <div class="btn" @click="cancelAdding()">
-          <div class="btn-text">
+      </div>
+      <div class="btn" @click="cancelAdding()">
+        <div class="btn-text">
           CANCEL
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 export default {
   name: "",
   data: () => ({
-    newNote:{}
+    newNote: {}
   }),
   methods: {
     addNote() {
-      //console.log(this.newNote);
-      //this.$emit('add-new-note');
-      this.$emit('add-new-note', this.newNote);
+      if (this.newNote.text) {
+        if (this.newNote.text.length > 0) {
+          this.$emit('add-new-note', this.newNote);
+        } else {
+          this.cancelAdding();
+        }
+      } else {
+        this.cancelAdding();
+      }
+
     },
     cancelAdding() {
-      this.$store.commit('changeState',{type:'isDisable', value: false});
-      this.$store.commit('changeState',{type:'isAdd', value: false});
+      this.$store.commit('changeState', {
+        type: 'isDisable',
+        value: false
+      });
+      this.$store.commit('changeState', {
+        type: 'isAdd',
+        value: false
+      });
     }
   }
 }
@@ -61,14 +74,14 @@ export default {
   flex-direction: column;
 }
 
-.button-group{
-  flex:2;
+.button-group {
+  flex: 2;
   display: flex;
   border-top: 1px solid black;
 }
 
-.button-group .btn{
-  flex:1;
+.button-group .btn {
+  flex: 1;
 
   self-align: center;
   display: flex;
@@ -78,30 +91,31 @@ export default {
   margin: 1px;
 }
 
-.button-group .btn:hover{
+.button-group .btn:hover {
   background-color: red;
 
 }
 
-.text-container{
-  flex:8;
+.text-container {
+  flex: 8;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.text-input{
+.text-input {
   flex: 1;
   overflow: hidden;
-  border:0px;
+  border: 0px;
   resize: none;
   font-size: 18px;
 }
 
-.text-input:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
+.text-input:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
 
 }
-
 </style>

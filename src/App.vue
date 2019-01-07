@@ -26,7 +26,7 @@ export default {
   name: 'app',
   async created() {
      let allNotes = await this.getAllNotes();
-     store.commit('setNotes', allNotes);
+     store.commit('setNotes', allNotes.data);
   },
   data(){
     return{

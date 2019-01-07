@@ -12,7 +12,7 @@ const store = new Vuex.Store({
     isConfirm: false,
     isAdd: false,
 
-    showNoteText:""
+    showNoteText: ""
   },
   getters: {
     notes: (state) => {
@@ -49,7 +49,7 @@ const store = new Vuex.Store({
     },
     updateNote: (state, note) => {
       for (var i = 0; i < state.notes.length; i++) {
-        if (state.notes[i].id === note.id) {
+        if (state.notes[i].id == note.id) {
           for (let key in state.notes[i]) {
             state.notes[i][key] = note[key]
           }
@@ -61,48 +61,35 @@ const store = new Vuex.Store({
   },
   actions: {
     getAllNotes: () => {
-      return [{
-          id: 1,
-          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur totam, id sit?"
-        },
-        {
-          id: 2,
-          text: `
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          Lorem ipsum dolor sit amet, consectetur.
-          `
-        },
-        {
-          id: 3,
-          text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatibus aspernatur odit maxime corporis temporibus quis nisi dolore placeat, id sunt quam unde necessitatibus tempora, obcaecati voluptatum excepturi, qui nobis!"
-        },
-      ]
+      return fetch("http://localhost:8080/notes", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          return res
+        });
     },
     addNewNote: (ctx, newNote) => {
-      let someText = newNote.text;
-      let id = ctx.state.notes.length + 1;
 
       //тут нужно сделать добавление
-
-      ctx.commit('addNewNote', {
-        id: id,
-        text: someText
-      });
+      fetch("http://localhost:8080/notes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newNote)
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          ctx.commit('addNewNote', res.data);
+        });
 
       ctx.commit('changeState', {
         type: 'isDisable',
@@ -115,7 +102,7 @@ const store = new Vuex.Store({
 
     },
     deleteNote: (ctx, note) => {
-      ctx.commit('deleteNote', note)
+
       ctx.commit('changeState', {
         type: 'isDisable',
         value: false
@@ -125,6 +112,21 @@ const store = new Vuex.Store({
         value: false
       });
       //тут нужно сделать удаление
+
+      fetch("http://localhost:8080/notes/" + note.id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(note)
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          ctx.commit('deleteNote', res.data)
+        });
+
     },
     updateNote: (ctx, note) => {
       ctx.commit('changeState', {
@@ -135,8 +137,21 @@ const store = new Vuex.Store({
         type: 'isEdit',
         value: false
       });
-      ctx.commit('updateNote', note);
       //тут нужно сделать обновление
+      fetch("http://localhost:8080/notes/" + note.id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(note)
+        })
+        .then(function(res) {
+          return res.json()
+        })
+        .then(function(res) {
+          ctx.commit('updateNote', res.data);
+        });
+
     }
   }
 })
