@@ -80,4 +80,18 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+body{
+      margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  /* body {
+    background-color: lightblue;
+  } */
+  .wide-100{
+    width:100%;
+  }
+}
+
+
 </style>

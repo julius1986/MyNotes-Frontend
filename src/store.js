@@ -124,7 +124,7 @@ const store = new Vuex.Store({
           return res.json()
         })
         .then(function(res) {
-          ctx.commit('deleteNote', res.data)
+          ctx.commit('deleteNote', note)
         });
 
     },
