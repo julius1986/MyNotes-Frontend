@@ -1,6 +1,6 @@
 <template>
   <div id="container-show-window">
-    <div class="note-box">
+    <div class="note-box width-80 height-80">
       <div class="text-container">
         <div class="text-input">{{noteText}}</div>
       </div>

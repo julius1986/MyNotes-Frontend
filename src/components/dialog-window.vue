@@ -1,6 +1,6 @@
 <template>
 <div id="dialog-window">
-  <div class="dialog-box">
+  <div class="dialog-box width-80 height-80">
     <div class="text-container">
       <div class="text">
         Are you sure? You want to delete this note?

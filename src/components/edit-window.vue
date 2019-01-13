@@ -1,6 +1,6 @@
 <template>
   <div id="edit-window">
-    <div class="dialog-box">
+    <div class="dialog-box width-80 height-80">
       <div class="text-container">
         <textarea class="text-input" v-model="newNote.text"></textarea>
       </div>

@@ -81,15 +81,23 @@ export default {
   margin-top: 60px;
 }
 body{
-      margin: 0;
+      margin: 0!important;
+      background: url(./assets/background-table-wood.jpg) repeat;
+      font-size: 26px;
 }
 
-@media only screen and (max-width: 768px) {
-  /* body {
-    background-color: lightblue;
-  } */
-  .wide-100{
-    width:100%;
+@media only screen and (max-device-width: 768px) {
+  body .width-100{
+    min-width:100% !important;
+  }
+  body .height-100{
+    min-height:100% !important;
+  }
+  body .width-80{
+    min-width:80% !important;
+  }
+  body .height-80{
+    min-height:80% !important;
   }
 }
 

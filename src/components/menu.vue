@@ -6,9 +6,7 @@
   <div class="user">
     User1
   </div>
-    <div class="add-btn" @click="addNewNote()">
-      Add tandom note
-    </div>
+    <div class="add-btn" @click="addNewNote()">Add</div>
 
 </div>
 </template>
@@ -56,4 +54,11 @@ export default {
   border-left: black 1px solid;
   border-right: black 1px solid;
 }
+
+@media only screen and (max-device-width: 768px) {
+  #menu{
+    height: 4%!important;
+  }
+}
+
 </style>

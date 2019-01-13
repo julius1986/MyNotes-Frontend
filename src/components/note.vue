@@ -1,5 +1,5 @@
 <template>
-<div id="note">
+<div id="note" class="width-100">
   <div class="text" @click="showFullNote()">{{note.text}}</div>
   <div class="btn-group">
     <div class="btn edit" @click="openEdit()">
@@ -85,4 +85,11 @@ export default {
   flex: 0;
   cursor: default;
 }
+
+@media only screen and (max-device-width: 768px) {
+  #note{
+    margin:10px 0px!important;
+  }
+}
+
 </style>
