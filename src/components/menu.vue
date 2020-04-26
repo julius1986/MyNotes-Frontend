@@ -2,10 +2,10 @@
 <div id="menu">
   <div class="users__panel">
   <div class="logout">
-    Logout
+    <a href="/logout">Logout</a>
   </div>
   <div class="user">
-    User1
+    {{userName}}
   </div>
   </div>
   <div class="btns__group">
@@ -16,6 +16,7 @@
 <script>
 export default {
   name: "",
+  props:['userName'],
   data: () => ({
 
   }),
@@ -60,6 +61,12 @@ export default {
 
 #menu .add-btn{
   padding:0 10px;
+}
+
+a{
+  text-decoration: none;
+  color: unset;
+  cursor: unset;
 }
 
 @media only screen and (max-device-width: 768px) {

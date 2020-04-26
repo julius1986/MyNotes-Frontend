@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu></Menu>
+    <Menu :userName="userName"></Menu>
     <list-notes :notes="notes" @set-update-note="setUpdateNote($event)" @set-delete-note="setDeleteNote($event)"></list-notes>
     <disable-window v-if="isDisable" ></disable-window>
     <dialog-window v-if="isConfirm"  @delete-note="deleteNote($event)" :note="currentDeleteNote"></dialog-window>
@@ -27,11 +27,13 @@ export default {
   async created() {
      let allNotes = await this.getAllNotes();
      store.commit('setNotes', allNotes.data);
+     this.userName = await this.getUserName();
   },
   data(){
     return{
       currentEditNote: {},
-      currentDeleteNote: {}
+      currentDeleteNote: {},
+      userName:""
     }
   },
   store,
@@ -67,6 +69,11 @@ export default {
     setDeleteNote(note){
       this.currentDeleteNote = note;
     },
+    async getUserName(){
+      let res = await fetch("http://localhost:8080/users/currentUser");
+      res = await res.json();
+      return res.data.userName;
+    }
   }
 }
 </script>
