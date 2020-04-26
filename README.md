@@ -1,5 +1,8 @@
 # mynotes
 
+Front end part of my application "My notes". 
+Basic CRUD functional for application, using rest api of my server. 
+
 ## Project setup
 ```
 npm install
