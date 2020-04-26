@@ -1,13 +1,16 @@
 <template>
 <div id="menu">
+  <div class="users__panel">
   <div class="logout">
-    logout
+    Logout
   </div>
   <div class="user">
     User1
   </div>
+  </div>
+  <div class="btns__group">
     <div class="add-btn" @click="addNewNote()">Add</div>
-
+  </div>
 </div>
 </template>
 <script>
@@ -27,37 +30,42 @@ export default {
 <style scoped>
 #menu {
   top: 0;
-  height: 10%;
+  height: 50px;
   width: 100%;
   position: fixed;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   background-color: orange;
   z-index: 2;
 }
-#menu div {
-  display: inline-block;
-}
-#menu .logout, .add-btn {
-  flex:1 ;
-}
 
-#menu .user {
-  flex: 4;
+#menu .users__panel{
+  display:flex;
+  align-items: center;
+  flex:2;
+  justify-content: flex-start;
+  padding:0 10px;
 }
 
-#menu ul li{
+#menu .btns__group{
+  display:flex;
+  align-items: center;
+  flex:1;
+  justify-content: flex-end;
+  padding:0 10px;
+}
 
-  margin:10px;
-  padding: 4px;
-  border-left: black 1px solid;
-  border-right: black 1px solid;
+#menu .logout, .user {
+  padding:0 10px;
+}
+
+#menu .add-btn{
+  padding:0 10px;
 }
 
 @media only screen and (max-device-width: 768px) {
   #menu{
-    height: 4%!important;
+    height: 30px;
+    font-size: 1.4rem;
   }
 }
 

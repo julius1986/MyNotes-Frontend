@@ -42,10 +42,17 @@ export default {
 #ListNotes {
   position: relative;
   top: 0;
-  margin-top: 10%;
   display: flex;
   justify-content: flex-start;
   z-index: 1;
   flex-wrap: wrap;
+  margin-top: 60px;
 }
+
+@media only screen and (max-device-width: 768px) {
+  #ListNotes{
+    margin-top: 40px;
+  }
+}
+
 </style>

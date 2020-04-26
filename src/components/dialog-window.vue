@@ -1,18 +1,18 @@
 <template>
 <div id="dialog-window">
-  <div class="dialog-box width-80 height-80">
+  <div class="dialog-box width-80 height-40">
     <div class="text-container">
       <div class="text">
         Are you sure? You want to delete this note?
       </div>
     </div>
     <div class="button-group">
-      <div class="btn" @click="deleteNote()">
+      <div class="btn btn-success" @click="deleteNote()">
         <div class="btn-text">
           YES
         </div>
       </div>
-      <div class="btn" @click="cancelDeleting()">
+      <div class="btn btn-cancel" @click="cancelDeleting()">
         <div class="btn-text">
           NO
         </div>
@@ -60,8 +60,8 @@ export default {
 
 .dialog-box {
   background-color: white;
-  width: 300px;
-  height: 300px;
+  width: 30vw;
+  height: 30vh;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -71,22 +71,15 @@ export default {
   flex: 2;
   display: flex;
   border-top: 1px solid black;
+  max-height:50px;
 }
 
 .button-group .btn {
   flex: 1;
-
-  self-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: coral;
   margin: 1px;
-}
-
-.button-group .btn:hover {
-  background-color: red;
-
 }
 
 .text-container {

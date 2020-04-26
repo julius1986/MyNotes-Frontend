@@ -2,15 +2,15 @@
   <div id="edit-window">
     <div class="dialog-box width-80 height-80">
       <div class="text-container">
-        <textarea class="text-input" v-model="newNote.text"></textarea>
+        <textarea class="text-input p-10" v-model="newNote.text"></textarea>
       </div>
       <div class="button-group">
-        <div class="btn" @click="updateNote()">
+        <div class="btn btn-success" @click="updateNote()">
           <div class="btn-text">
           UPDATE
           </div>
         </div>
-        <div class="btn" @click="cancelUpdating()">
+        <div class="btn btn-cancel" @click="cancelUpdating()">
           <div class="btn-text">
           CANCEL
           </div>
@@ -57,8 +57,8 @@ export default {
 
 .dialog-box {
   background-color: white;
-  width: 300px;
-  height: 300px;
+  width: 60vw;
+  height: 60vh;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -68,22 +68,15 @@ export default {
   flex:2;
   display: flex;
   border-top: 1px solid black;
+  max-height:50px;
 }
 
 .button-group .btn{
   flex:1;
-
-  self-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: coral;
   margin: 1px;
-}
-
-.button-group .btn:hover{
-  background-color: red;
-
 }
 
 .text-container{
@@ -95,7 +88,7 @@ export default {
 
 .text-input{
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   border:0px;
   resize: none;
   font-size: 18px;

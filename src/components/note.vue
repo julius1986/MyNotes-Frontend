@@ -2,10 +2,10 @@
 <div id="note" class="width-100">
   <div class="text" @click="showFullNote()">{{note.text}}</div>
   <div class="btn-group">
-    <div class="btn edit" @click="openEdit()">
+    <div class="btn btn-info" @click="openEdit()">
       <div class="btnText">Edit</div>
     </div>
-    <div class="btn delete" @click="setDeleteNote()">
+    <div class="btn btn-info" @click="setDeleteNote()">
       <div class="btnText">Delete</div>
     </div>
   </div>
@@ -62,23 +62,15 @@ export default {
   border-top: 1px solid black;
   display: flex;
   background-color: skyblue;
+  max-height:50px;
 }
 
 .btn-group .btn {
   flex: 1;
   margin: 1px;
-  background-color: coral;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.btn-group .btn:hover {
-  background-color: yellow;
-}
-
-.btn-group .btn:active {
-  background-color: red;
 }
 
 .btn-group .btn .btnText {

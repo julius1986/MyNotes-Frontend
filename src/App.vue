@@ -78,7 +78,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 body{
       margin: 0!important;
@@ -87,19 +86,55 @@ body{
 }
 
 @media only screen and (max-device-width: 768px) {
-  body .width-100{
+  .width-100{
     min-width:100% !important;
   }
-  body .height-100{
+  .height-100{
     min-height:100% !important;
   }
-  body .width-80{
+  .width-80{
     min-width:80% !important;
   }
-  body .height-80{
+  .height-80{
     min-height:80% !important;
+  }
+  .width-60{
+    min-width:60% !important;
+  }
+  .height-60{
+    min-height:60% !important;
+  }
+  .width-40{
+    min-width:40% !important;
+  }
+  .height-40{
+    min-height:40% !important;
   }
 }
 
+.btn-success{
+  transition: background-color .4s;
+  background-color: lightgreen;
+}
+.btn-success:hover{
+  background-color: green;
+}
+.btn-cancel{
+  transition: background-color .4s;
+  background-color: rgb(252, 88, 88);
+}
+.btn-cancel:hover{
+  background-color: rgb(247, 30, 30); 
+}
+.btn-info{
+  transition: background-color .4s;
+  background-color: rgb(247, 206, 0);
+}
+.btn-info:hover{
+  background-color: yellow;
+}
+.p-10{
+  padding:10px;
+}
 
 </style>

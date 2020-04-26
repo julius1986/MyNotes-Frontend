@@ -2,15 +2,15 @@
 <div id="add-window">
   <div class="dialog-box width-80 height-80">
     <div class="text-container">
-      <textarea class="text-input" v-model="newNote.text"></textarea>
+      <textarea class="text-input p-10" v-model="newNote.text"></textarea>
     </div>
     <div class="button-group">
-      <div class="btn" @click="addNote()">
+      <div class="btn btn-success" @click="addNote()">
         <div class="btn-text">
-          ADD NEW NOTE
+          ADD
         </div>
       </div>
-      <div class="btn" @click="cancelAdding()">
+      <div class="btn btn-cancel" @click="cancelAdding()">
         <div class="btn-text">
           CANCEL
         </div>
@@ -67,8 +67,8 @@ export default {
 
 .dialog-box {
   background-color: white;
-  width: 300px;
-  height: 300px;
+  height: 60vh;
+  width: 60vw;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -78,22 +78,15 @@ export default {
   flex: 2;
   display: flex;
   border-top: 1px solid black;
+  max-height:50px;
 }
 
 .button-group .btn {
   flex: 1;
-
-  self-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: coral;
   margin: 1px;
-}
-
-.button-group .btn:hover {
-  background-color: red;
-
 }
 
 .text-container {
@@ -105,7 +98,7 @@ export default {
 
 .text-input {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
   border: 0px;
   resize: none;
   font-size: 18px;

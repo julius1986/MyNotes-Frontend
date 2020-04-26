@@ -2,10 +2,10 @@
   <div id="container-show-window">
     <div class="note-box width-80 height-80">
       <div class="text-container">
-        <div class="text-input">{{noteText}}</div>
+        <div class="text-input p-10">{{noteText}}</div>
       </div>
       <div class="button-group">
-        <div class="btn" @click="cancelUpdating()">
+        <div class="btn btn-cancel" @click="cancelUpdating()">
           <div class="btn-text">
           CANCEL
           </div>
@@ -50,8 +50,8 @@ export default {
 
 .note-box {
   background-color: white;
-  width: 300px;
-  height: 300px;
+  width: 60vw;
+  height: 60vh;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -59,6 +59,7 @@ export default {
 
 .button-group{
   flex:2;
+  max-height: 50px;
   display: flex;
   border-top: 1px solid black;
 }
@@ -70,13 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: coral;
   margin: 1px;
-}
-
-.button-group .btn:hover{
-  background-color: red;
-
 }
 
 .text-container{
@@ -84,7 +79,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  overflow: auto;
 }
 
 .text-input{
